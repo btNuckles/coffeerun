@@ -45,3 +45,23 @@ QUnit.test("Print Orders", function (assert) {
   // Orders are displayed on console
   assert.ok(true, "Passed!" );
 })
+
+QUnit.test( "Create Orders Log", function( assert ) {
+  var log = window.myTruck.createOrder({ emailAddress: 'me@goldfinger.com', coffee: 'double mocha'});
+  var orderInfo = window.myTruck.db.get('me@goldfinger.com');
+  assert.ok(log == "Adding order for me@goldfinger.com", "Passed!" );
+});
+
+QUnit.test("Fill Order Log", function (assert) {
+  window.myTruck.createOrder({ emailAddress: 'me@goldfinger.com', coffee: 'double mocha'});
+  var log = window.myTruck.deliverOrder('me@goldfinger.com');
+  var orderInfo = window.myTruck.db.get('me@goldfinger.com');
+  assert.ok(log == "Delivering order for me@goldfinger.com", "Passed!" );
+})
+
+QUnit.test("Print Orders Log", function (assert) {
+  window.myTruck.createOrder({ emailAddress: 'me@goldfinger.com', coffee: 'double mocha'});
+  var log = window.myTruck.printOrders();
+  // Orders are displayed on console
+  assert.ok(log == "Truck #ncc-1701 has pending orders:", "Passed!");
+})
