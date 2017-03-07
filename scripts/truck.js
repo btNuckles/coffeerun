@@ -28,7 +28,5 @@
 
   App.Truck = Truck;
   window.App = App;
-  var myTruck = new Truck('ncc-1701', new DataStore());
-  window.myTruck = myTruck;
 
 })(window);
