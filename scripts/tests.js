@@ -1,3 +1,9 @@
+// Tests.js cannot recognize the 'this' operator used
+// in truck.js because it is out of scope in tests.js.
+// To use some of this functionality you must use
+// window.myTruck to specify you are using a truck
+// method instead of "this"
+
 QUnit.test( "DataStore Add", function( assert ) {
   var ds = new App.DataStore();
   ds.add('m@bond.com', 'tea');
@@ -31,4 +37,11 @@ QUnit.test("Fill Order", function (assert) {
   window.myTruck.deliverOrder('me@goldfinger.com');
   var orderInfo = window.myTruck.db.get('me@goldfinger.com');
   assert.ok(orderInfo == undefined, "Passed!" );
+})
+
+QUnit.test("Print Orders", function (assert) {
+  window.myTruck.createOrder({ emailAddress: 'me@goldfinger.com', coffee: 'double mocha'});
+  var orders = window.myTruck.printOrders();
+  // Orders are displayed on console
+  assert.ok(true, "Passed!" );
 })
