@@ -3,6 +3,13 @@
 // To use some of this functionality you must use
 // window.myTruck to specify you are using a truck
 // method instead of "this"
+//
+// Initailly you are also not able to test the output
+// of the many console.logs that we use in truck.js
+// a simple fix is to create another function that
+// returns the value we log to console and test that
+// string against the console output when we run the
+// function its contained in
 
 QUnit.test( "DataStore Add", function( assert ) {
   var ds = new App.DataStore();
